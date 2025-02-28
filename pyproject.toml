@@ -1,61 +1,48 @@
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
-
-[project]
+[tool.poetry]
 name = "aiogram-template"
-dynamic = ["version"]
-description = 'Aiogram template'
-readme = "README.md"
-requires-python = ">=3.8"
-license = "MIT"
-keywords = []
-authors = [
-  { name = "Karimullin Arthur", email = "KarimullinArthur@disroot.org" },
+version = "0.0.1"
+description = ""
+authors = ["Karimullin Arthur <KarimullinArthur@disroot.org>"]
+#readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+aiogram = "^3.17.0"
+pydantic-settings = "^2.7.1"
+sqlalchemy = "^2.0.38"
+aiosqlite = "^0.21.0"
+
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.tox]
+env_list = ["lint", "py313", "py312", "py311"]
+
+[tool.tox.env_run_base]
+description = "run unit tests"
+deps = [
+    "pytest>=8",
+#    "pytest-sugar",
 ]
-classifiers = [
-  "Development Status :: 4 - Beta",
-  "Programming Language :: Python",
-  "Programming Language :: Python :: 3.8",
-  "Programming Language :: Python :: 3.9",
-  "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3.11",
-  "Programming Language :: Python :: 3.12",
-  "Programming Language :: Python :: Implementation :: CPython",
-  "Programming Language :: Python :: Implementation :: PyPy",
-]
-dependencies = []
-
-[project.urls]
-Documentation = "https://github.com/Karimullin Arthur/aiogram-template#readme"
-Issues = "https://github.com/Karimullin Arthur/aiogram-template/issues"
-Source = "https://github.com/Karimullin Arthur/aiogram-template"
-
-[tool.hatch.version]
-path = "src/aiogram_template/__about__.py"
-
-[tool.hatch.envs.types]
-extra-dependencies = [
-  "mypy>=1.0.0",
-]
-[tool.hatch.envs.types.scripts]
-check = "mypy --install-types --non-interactive {args:src/aiogram_template tests}"
-
-[tool.coverage.run]
-source_pkgs = ["aiogram_template", "tests"]
-branch = true
-parallel = true
-omit = [
-  "src/aiogram_template/__about__.py",
+commands = [
+#     ["pytest", { replace = "posargs", default = ["tests"], extend = true }]
+    ["pytest"]
 ]
 
-[tool.coverage.paths]
-aiogram_template = ["src/aiogram_template", "*/aiogram-template/src/aiogram_template"]
-tests = ["tests", "*/aiogram-template/tests"]
+[tool.tox.env_lint]
+description = "run linters"
+skip_install = true
+deps = ["ruff"]
+commands = ["ruff format ."]
 
-[tool.coverage.report]
-exclude_lines = [
-  "no cov",
-  "if __name__ == .__main__.:",
-  "if TYPE_CHECKING:",
+[tool.tox.env_type]
+description = "run type checks"
+deps = ["mypy"]
+commands = [
+    ["mypy", { replace = "posargs", default = ["src", "tests"], extend = true }]
 ]

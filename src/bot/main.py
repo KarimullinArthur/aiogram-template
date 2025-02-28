@@ -7,6 +7,8 @@ from aiogram import Bot, Dispatcher
 from routers import router_manager
 from config import settings
 
+import database
+
 
 dp = Dispatcher()
 bot = Bot(settings.bot_token)
@@ -17,19 +19,19 @@ async def main():
 
     dp.include_routers(*list(router_manager._routers.values()))
 
-#     dp.include_routers(*router_manager.get_all_except(
-#             (
-#             router_manager.click, 
-#             )
-#         )
-#     )
-#     dp.include_routers(*router_manager.get_only(router_manager.click))
+    #     dp.include_routers(*router_manager.get_all_except(
+    #             (
+    #             router_manager.click,
+    #             )
+    #         )
+    #     )
+    #     dp.include_routers(*router_manager.get_only(router_manager.click))
 
-#     dp.include_router(routers["admin_panel.menu"])
-# 
-#     try: dp.include_routers(*list(routers.values()))
-#     except: pass
-# 
+    #     dp.include_router(routers["admin_panel.menu"])
+    #
+    #     try: dp.include_routers(*list(routers.values()))
+    #     except: pass
+    #
     await dp.start_polling(bot)
 
 
