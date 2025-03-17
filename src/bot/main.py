@@ -7,8 +7,6 @@ from aiogram import Bot, Dispatcher
 from routers import router_manager
 from config import settings
 
-import database
-
 
 dp = Dispatcher()
 bot = Bot(settings.bot_token)

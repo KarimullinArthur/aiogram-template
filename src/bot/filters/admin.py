@@ -1,7 +1,7 @@
 from aiogram.filters import Filter
 from aiogram.types import CallbackQuery, Message
 
-import bot.database as database
+import database as database
 
 
 class AdminFilter(Filter):

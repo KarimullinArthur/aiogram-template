@@ -1,3 +1,3 @@
-import bot.database as database
+import database as database
 
 

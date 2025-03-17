@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  tg_bot:
+    build:
+      context: .
+      dockerfile: ./src/bot/Dockerfile
+
+    image: aiogram_template:latest
+    container_name: aiogram_template_tg_bot 
+    restart: unless-stopped
+
+    develop:
+      watch:
+      - action: rebuild
+        path: ./src/bot
+        target: /app

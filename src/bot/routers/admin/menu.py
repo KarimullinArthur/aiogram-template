@@ -3,9 +3,9 @@ from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message
 
-import bot.markup as markup
-import bot.states as states
-import bot.filters as filters
+import markup as markup
+import states as states
+import filters as filters
 
 
 router = Router(name=__name__)

@@ -1,0 +1,2 @@
+mailing = "mailing"
+stats = "stats"
