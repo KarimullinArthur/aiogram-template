@@ -1,8 +1,8 @@
 FROM python:3.13-alpine
 
+
 RUN addgroup -g 1001 app && \
-    adduser -S -s /bin/sh -u 1001 -G app app && \
-    apk add poetry
+    adduser -S -s /bin/sh -u 1001 -G app app && 
 
 USER app
 
@@ -10,8 +10,8 @@ WORKDIR /app
 
 COPY --chown=app:app . .
 
-RUN poetry install --no-root
+RUN pip install 
 
 WORKDIR /app/src/bot
 
-CMD ["poetry", "run", "python", "main.py"]
+CMD ["python", "main.py"]
